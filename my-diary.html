@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my-diary</title>
+    <script src="my-diary.js"></script>
+</head>
+<style>
+    table {
+        margin: 0;
+        height: border-box;
+    }
+
+    th {
+        margin: 0;
+        padding: 0;
+        height: 40px;
+        width: 40px;
+        display: block;
+    }
+
+    #screen {
+        margin: 30px auto;
+        display: block;
+        height: 500px;
+        width: 500px;
+    }
+
+    #input {
+        margin: auto;
+        width: max-content;
+    }
+</style>
+
+<!--<canvas id="canvas" height="500"width="500"></canvas>-->
+<body>
+<div>
+    <div id="screen">
+        <table id="table" border="1px solid">
+            <tr>
+                <th id="row0"></th>
+            </tr>
+            <tr>
+                <th id="row1"></th>
+            </tr>
+            <tr>
+                <th id="row2"></th>
+            </tr>
+            <tr>
+                <th id="row3"></th>
+            </tr>
+            <tr>
+                <th id="row4"></th>
+            </tr>
+            <tr>
+                <th id="row5"></th>
+            </tr>
+            <tr>
+                <th id="row6"></th>
+            </tr>
+            <tr>
+                <th id="row7"></th>
+            </tr>
+            <tr>
+                <th id="row8"></th>
+            </tr>
+            <tr>
+                <th id="row9"></th>
+            </tr>
+        </table>
+
+    </div>
+    <div id="input">
+        <input type="text" placeholder="How are you today?" id="inputMessage">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+<script>
+    let messages = new Message();
+    messages.setText("MY DIARY");
+    messages.setColor('#bf5d5d');
+
+    /* let canvas = document.getElementById('canvas');
+     let pen = canvas.getContext('2d');
+
+     pen.beginPath();
+     pen.fillStyle = mess.color;
+     pen.font = ('30px Arial');
+     pen.fillText(mess.getText(),50,50);
+
+
+
+     pen.fillStyle = 'tile color';
+     pen.closePath();
+     pen.rect(50,50,100,60);
+     pen.fill();*/
+
+
+    function sendMessage() {
+        addMessage(document.getElementById('inputMessage').value);
+        displayMessage();
+    }
+
+    function addMessage(str) {
+        messages.addMessage(str);
+    }
+
+    function displayMessage() {
+        console.log(messages.allMessage );
+        for (let i in messages.allMessage ){
+            if (i<10){
+                document.getElementById('row'+ (9 - i)).innerText = messages.allMessage[i];
+            }
+        }
+    }
+
+
+</script>
+
+
+</body>
+</html>
