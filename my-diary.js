@@ -21,7 +21,7 @@ class Message {
     }
 
     addMessage(str){
-        this.allMessage= this.allMessage.unshift(str);
+        this.allMessage.unshift(str);
     }
 
 }
