@@ -19,13 +19,21 @@
         display: block;
         text-align: right;
         background-color: cornflowerblue;
+        padding-right: 10px;
+        box-sizing: border-box;
+    }
+
+    div{
+        background-color: cornflowerblue;
     }
 
     #screen {
-        margin: 30px auto;
+        margin: 1px auto;
         display: block;
         height: max-content;
-        width: 500px;
+        /* width: 500px; */
+        overflow-y: scroll;
+        height: 100%;
     }
 
     #input {
@@ -33,13 +41,14 @@
         width: max-content;
     }
 
-    h2{
+    h1{
         width: max-content;
         margin: 10px auto;
+        color: antiquewhite;
     }
 
     #main{
-        width: 700px;
+        width: 500px;
         height: max-content;
         margin: 0 auto;
         border: 1px solid black;
@@ -47,18 +56,17 @@
 
 </style>
 
-<!--<canvas id="canvas" height="500"width="500"></canvas>-->
 <body>
 
 
 
 
 <div id="main">
-    <h2>Mydiary</h2>
-    <div style="width: max-content">
+    <h1>Mydiary</h1>
+    <div style="width: max-content;height: 500px">
         <div id="screen">
             <table id="table" cellspacing="0">
-                <tr>
+                <!--<tr>
                     <th id="row0"></th>
                 </tr>
                 <tr>
@@ -87,12 +95,12 @@
                 </tr>
                 <tr>
                     <th id="row9"></th>
-                </tr>
+                </tr>-->
             </table>
 
         </div>
         <div id="input">
-            <input type="text" placeholder="How are you today?" id="inputMessage">
+            <input type="text" placeholder="How are you today?" id="inputMessage" size="67">
             <button onclick="sendMessage()">Send</button>
         </div>
     </div>
@@ -103,39 +111,28 @@
     messages.setText("MY DIARY");
     messages.setColor('#bf5d5d');
 
-    /* let canvas = document.getElementById('canvas');
-     let pen = canvas.getContext('2d');
-
-     pen.beginPath();
-     pen.fillStyle = mess.color;
-     pen.font = ('30px Arial');
-     pen.fillText(mess.getText(),50,50);
-
-
-
-     pen.fillStyle = 'tile color';
-     pen.closePath();
-     pen.rect(50,50,100,60);
-     pen.fill();*/
-
 
     function sendMessage() {
         addMessage(document.getElementById('inputMessage').value);
-        displayMessage();
+        //displayMessage();
     }
 
     function addMessage(str) {
         messages.addMessage(str);
+        console.log(document.getElementById('table'))
+        document.getElementById('table').innerHTML +=`<tr>
+            <th id="${messages.allMessage.length}-1">${str}</th>
+        </tr>`
     }
 
-    function displayMessage() {
+    /*function displayMessage() {
         console.log(messages.allMessage );
         for (let i in messages.allMessage ){
             if (i<10){
                 document.getElementById('row'+ (9 - i)).innerText = messages.allMessage[i];
             }
         }
-    }
+    }*/
 
 
 </script>
